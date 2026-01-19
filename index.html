@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Полный Гайд Моделей Генерации Изображений 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .page {
+            background: white;
+            margin: 20px;
+            padding: 40px;
+            page-break-after: always;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            min-height: 1000px;
+        }
+        
+        .title-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+        }
+        
+        .title-page h1 {
+            font-size: 48px;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .title-page .subtitle {
+            font-size: 28px;
+            color: #764ba2;
+            margin-bottom: 40px;
+        }
+        
+        .title-page .meta {
+            font-size: 16px;
+            color: #666;
+            margin-top: 60px;
+        }
+        
+        h2 {
+            color: #667eea;
+            font-size: 36px;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #764ba2;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        .model-card {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .model-name {
+            font-size: 22px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .model-tag {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        
+        .model-tag.trending {
+            background: #ff6b6b;
+        }
+        
+        .model-tag.new {
+            background: #51cf66;
+        }
+        
+        .model-tag.limited {
+            background: #ff8c42;
+        }
+        
+        .specs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .spec {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .spec-label {
+            font-weight: bold;
+            color: #667eea;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .spec-value {
+            font-size: 16px;
+            color: #333;
+        }
+        
+        .section {
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-weight: bold;
+            color: #764ba2;
+            margin-bottom: 8px;
+        }
+        
+        .section-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+        
+        .use-cases {
+            background: #e7f5ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        
+        .use-cases .title {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .use-cases ul {
+            list-style-position: inside;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .use-cases li {
+            margin-bottom: 5px;
+        }
+        
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .pros, .cons {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        
+        .pros {
+            border-top: 3px solid #51cf66;
+        }
+        
+        .cons {
+            border-top: 3px solid #ff6b6b;
+        }
+        
+        .pros .title, .cons .title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .pros .title {
+            color: #51cf66;
+        }
+        
+        .cons .title {
+            color: #ff6b6b;
+        }
+        
+        .pros ul, .cons ul {
+            list-style-position: inside;
+            font-size: 13px;
+            color: #555;
+        }
+        
+        .pros li, .cons li {
+            margin-bottom: 5px;
+        }
+        
+        .price-comparison {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: #fff3bf;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .price-item {
+            text-align: center;
+        }
+        
+        .price-label {
+            font-weight: bold;
+            color: #664d03;
+            margin-bottom: 5px;
+        }
+        
+        .price-value {
+            font-size: 24px;
+            color: #f08c00;
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .toc-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .toc-page h2 {
+            color: white;
+            border-bottom-color: white;
+        }
+        
+        .toc-page ul {
+            list-style: none;
+            font-size: 16px;
+            line-height: 2;
+        }
+        
+        .toc-page .category {
+            font-weight: bold;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        
+        .toc-page .item {
+            margin-left: 30px;
+        }
+        
+        .summary-page {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .summary-page h2 {
+            color: white;
+            border-bottom-color: white;
+        }
+        
+        .recommendation {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid white;
+            border-radius: 5px;
+        }
+        
+        .recommendation .title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        .recommendation ul {
+            margin-left: 20px;
+        }
+        
+        .recommendation li {
+            margin-bottom: 8px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .page {
+                margin: 0;
+                padding: 40px;
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ТИТУЛЬНАЯ СТРАНИЦА -->
+    <div class="page title-page">
+        <h1>🎨 Полный Гайд</h1>
+        <div class="subtitle">Моделей Генерации Изображений 2026</div>
+        <div style="font-size: 20px; margin-top: 30px;">Подробное описание каждой модели</div>
+        <div class="meta">
+            <p>Версия 1.2 | Январь 2026</p>
+            <p>Все модели верифицированы из первоисточников</p>
+            <p style="margin-top: 40px; font-size: 14px; color: #999;">✅ Файл готов для GitHub Pages</p>
+        </div>
+    </div>
+
+    <!-- ОГЛАВЛЕНИЕ -->
+    <div class="page toc-page">
+        <h2>📑 Оглавление</h2>
+        <ul>
+            <div class="category">🌟 SEEDREAM</div>
+            <li class="item">Seedream 4.5 — Высокоэстетичная мультиизображений генерация</li>
+            <li class="item">Seedream 4 — Мультиизображений генерация и редактирование</li>
+            <li class="item">Seedream 4 4K — Единственная с поддержкой 4K и опорными изображениями</li>
+            <li class="item">Seedream — Исключительная креативность</li>
+
+            <div class="category">⚡ FLUX</div>
+            <li class="item">Flux.2 Max — Продвинутое редактирование с максимальным качеством</li>
+            <li class="item">Flux.2 Pro — Next-generation редактирование и генерация</li>
+            <li class="item">Flux.2 Flex — Next-generation редактирование с поддержкой типографики</li>
+            <li class="item">Flux.1 Kontext Max — Лучше всего для профессионалов с опорными изображениями</li>
+            <li class="item">Flux.1 Kontext Pro — Отлично для ежедневного использования</li>
+            <li class="item">Flux.1 — Тренировка стилей, объектов и персонажей</li>
+            <li class="item">Flux.1 Fast — <1 секунда генерация</li>
+            <li class="item">Flux.1 Realism — Только фотореализм</li>
+            <li class="item">Flux.1.1 — Отличная эстетика и соответствие промпту</li>
+
+            <div class="category">🔍 GOOGLE</div>
+            <li class="item">Google Nano Banana Pro — Самая высокоточная модель Google (ОГРАНИЧЕНО ПО ВРЕМЕНИ)</li>
+            <li class="item">Google Nano Banana — Стандартная версия с максимальным качеством</li>
+            <li class="item">Google Imagen 3 — Высокоточные изображения</li>
+            <li class="item">Google Imagen 4 Fast — Невероятное соответствие, быстрее</li>
+            <li class="item">Google Imagen 4 — Невероятное соответствие промпту</li>
+            <li class="item">Google Imagen 4 Ultra — Ультракачество</li>
+
+            <div class="category">🎭 MYSTIC</div>
+            <li class="item">Mystic 2.5 — Тренировка стилей, объектов и персонажей</li>
+            <li class="item">Mystic 2.5 Flexible — Сильное соответствие промпту</li>
+            <li class="item">Mystic 2.5 Fluid — Топ модель Freepik, быстрее</li>
+            <li class="item">Mystic 1.0 — Хорошее качество и текстуры</li>
+
+            <div class="category">💬 GPT (OPENAI)</div>
+            <li class="item">GPT 1.5 — Надежное качество и консистентные визуалы</li>
+            <li class="item">GPT 1.5 - High — Высокоточное качество и консистентные визуалы</li>
+            <li class="item">GPT — Среднее качество от OpenAI</li>
+            <li class="item">GPT 1 - HQ — Самое высокое качество от OpenAI</li>
+        </ul>
+    </div>
+
+    <!-- ФИНАЛЬНЫЕ РЕКОМЕНДАЦИИ -->
+    <div class="page summary-page">
+        <h2>🎯 Финальные Рекомендации</h2>
+
+        <div class="recommendation">
+            <div class="title">🏆 Для Максимального Качества и Ссылочных Изображений:</div>
+            <ul>
+                <li><strong>Google Nano Banana Pro</strong> — 14-15 ссылок + 5 персонажей, 4K, безупречный текст (⚠️ ОГРАНИЧЕНО ПО ВРЕМЕНИ)</li>
+                <li><strong>Seedream 4 4K</strong> — 4K + ссылки, Seedream качество, единственная в линейке с 4K + ссылками</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <div class="title">⚡ Для Быстрой Пакетной Обработки:</div>
+            <ul>
+                <li><strong>Flux.2 Pro</strong> — 8-10 ссылок, <10 сек, баланс скорость-качество</li>
+                <li><strong>Flux.1 Fast</strong> — <1 сек, идеально для A/B тестирования вариантов</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <div class="title">📝 Для Текста в Изображениях:</div>
+            <ul>
+                <li><strong>Google Nano Banana Pro</strong> — безупречный текст рендер + 4K</li>
+                <li><strong>Flux.2 Flex</strong> — поддержка типографики, хороший рендер текста</li>
+                <li><strong>Google Imagen 4 Ultra</strong> — идеальное соответствие описанию с текстом</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <div class="title">🖼️ Для Фотореализма:</div>
+            <ul>
+                <li><strong>Flux.1 Realism</strong> — только photorealism, максимальный реализм</li>
+                <li><strong>Google Imagen 4</strong> — невероятное соответствие + реализм</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <div class="title">🎨 Для Творчества и Эстетики:</div>
+            <ul>
+                <li><strong>Seedream 4.5</strong> — высокоэстетичная, красивые результаты</li>
+                <li><strong>Seedream</strong> классическая — исключительная креативность</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <div class="title">💎 Лучшее Соотношение Цена-Качество:</div>
+            <ul>
+                <li><strong>Seedream 4.5</strong> — 10 ссылок + 6 выходов + дешево</li>
+                <li><strong>Flux.1 Realism</strong> — специализирована на фотореализме</li>
+                <li><strong>Mystic 1.0</strong> — хорошее качество при низкой цене</li>
+            </ul>
+        </div>
+
+        <div class="recommendation">
+            <div class="title">👶 Для Начинающих:</div>
+            <ul>
+                <li><strong>Seedream 4.5</strong> — просто использовать, красивые результаты</li>
+                <li><strong>Flux.1 Fast</strong> — быстрая, для экспериментов</li>
+                <li><strong>GPT</strong> базовая — недорогая, интегрирована в ChatGPT</li>
+            </ul>
+        </div>
+
+        <div style="margin-top: 40px; padding-top: 40px; border-top: 2px solid white;">
+            <h3 style="color: white; font-size: 24px; margin-bottom: 20px;">📌 Ключевой Вывод:</h3>
+            <p style="font-size: 16px; line-height: 1.8;">
+                <strong>Пейзаж полностью фрагментирован.</strong> Нет "универсального победителя" — есть "оптимальный для вашей задачи". 
+                <br><br>
+                <strong>Основной выбор:</strong>
+                <br>• <strong>Google Nano Banana Pro</strong> если нужно максимум (ограничено по времени!)
+                <br>• <strong>Seedream 4.5</strong> для работы серии с множественными ссылочными изображениями
+                <br>• <strong>Flux.2 Pro</strong> для быстрой пакетной обработки
+                <br>• <strong>Google Imagen 4 Ultra</strong> для максимального качества (после Nano Pro исчезнет)
+                <br>• <strong>Flux.1 Realism</strong> для фотореализма
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
